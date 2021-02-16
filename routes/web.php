@@ -17,6 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('etudiant','EtudiantController');
-Route::resource('mail','MailController');
-Route::resource('sms','SMSController');
+Route::resource('etudiant',\App\Http\Controllers\EtudiantController::class);
+Route::resource('mail',\App\Http\Controllers\MailController::class);
+Route::resource('sms',\App\Http\Controllers\SMSController::class);
