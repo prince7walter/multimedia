@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="Walter&Cycy">
-  <title>Manage It - Gestionnaire de mails/sms pour étudiants</title>
+  <title>Manager's Tools - Gestionnaire de mails/sms pour étudiants</title>
 
   <!-- Favicons -->
   <link href="{{asset('img/favicon.png')}}" rel="icon">
@@ -37,7 +37,7 @@
             <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
         </div>
         <!--logo start-->
-        <a href="index.html" class="logo"><b>Manage <span>Tools</span></b></a>
+        <a href="index.html" class="logo"><b>Manager'<span>s Tools</span></b></a>
         <!--logo end-->
         <div class="nav notify-row" id="top_menu">
             <!--  notification start -->
@@ -89,37 +89,25 @@
                 <li class="mt">
                     <a class="active" href="index.html">
                         <i class="fa fa-dashboard"></i>
-                        <span>Dashboard</span>
+                        <span>Tableau de bord</span>
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a href="javascript:;">
+                    <a href="{{route('etudiant.index')}}">
                         <i class="fa fa-desktop"></i>
-                        <span>Gestion des classes</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="morris.html">Morris</a></li>
-                        <li><a href="chartjs.html">Chartjs</a></li>
-                        <li><a href="flot_chart.html">Flot Charts</a></li>
-                        <li><a href="xchart.html">xChart</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-cogs"></i>
-                        <span>Gestions des étudiants</span>
+                        <span>Gestion des étudiants</span>
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a href="javascript:;">
+                    <a href="{{route('mail.index')}}">
                         <i class="fa fa-book"></i>
                         <span>Envoyer un mail</span>
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a href="javascript:;">
+                    <a href="{{route('sms.index')}}">
                         <i class="fa fa-tasks"></i>
-                        <span>Envoyer un sms</span>
+                        <span>Envoyer un SMS</span>
                     </a>
                 </li>
             </ul>
@@ -141,17 +129,8 @@
     <footer class="site-footer">
         <div class="text-center">
             <p>
-                © Copyrights <strong>Dashio</strong>. All Rights Reserved
+                © Copyrights <strong>MIAGE's LAB</strong>. Tous droits réservés
             </p>
-            <div class="credits">
-                <!--
-                  You are NOT allowed to delete the credit link to TemplateMag with free version.
-                  You can delete the credit link only if you bought the pro version.
-                  Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
-                  Licensing information: https://templatemag.com/license/
-                -->
-                Created with Dashio template by <a href="https://templatemag.com/">TemplateMag</a>
-            </div>
             <a href="blank.html#" class="go-top">
                 <i class="fa fa-angle-up"></i>
             </a>
@@ -178,11 +157,11 @@
     $(document).ready(function() {
       var unique_id = $.gritter.add({
         // (string | mandatory) the heading of the notification
-        title: 'Welcome to Dashio!',
+        title: 'Bienvenue sur Manager Tools!',
         // (string | mandatory) the text inside the notification
         text: 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo.',
         // (string | optional) the image to display on the left
-        image: 'img/ui-sam.jpg',
+        image: 'img/wal.jpg',
         // (bool | optional) if you want it to fade out on its own or just sit there
         sticky: false,
         // (int | optional) the time you want it to be alive for before fading out
