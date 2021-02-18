@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::resource('dashbord',\App\Http\Controllers\DashbordController::class);
 Route::resource('etudiant',\App\Http\Controllers\EtudiantController::class);
 Route::resource('mail',\App\Http\Controllers\MailController::class);
 Route::resource('sms',\App\Http\Controllers\SMSController::class);

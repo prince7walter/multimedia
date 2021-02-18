@@ -37,7 +37,7 @@
             <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
         </div>
         <!--logo start-->
-        <a href="index.html" class="logo"><b>Manager'<span>s Tools</span></b></a>
+        <a href="{{route('dashbord.index')}}" class="logo"><b>Manager'<span>s Tools</span></b></a>
         <!--logo end-->
         <div class="nav notify-row" id="top_menu">
             <!--  notification start -->
@@ -84,10 +84,10 @@
         <div id="sidebar" class="nav-collapse ">
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
-                <p class="centered"><a href="profile.html"><img src="{{asset('img/wal.jpg')}}" class="img-circle" width="80"></a></p>
+                <p class="centered"><a href="profile.html"><img src="{{asset('img/user.png')}}" class="img-circle" width="80"></a></p>
                 <h5 class="centered">Super User</h5>
                 <li class="mt">
-                    <a class="active" href="index.html">
+                    <a class="active" href="{{route('dashbord.index')}}">
                         <i class="fa fa-dashboard"></i>
                         <span>Tableau de bord</span>
                     </a>
@@ -120,7 +120,9 @@
         *********************************************************************************************************************************************************** -->
     <!--main content start-->
     <section id="main-content">
-        @yield('content')
+        <section class="wrapper site-min-height">
+            @yield('content')
+        </section>
         <!-- /wrapper -->
     </section>
     <!-- /MAIN CONTENT -->
