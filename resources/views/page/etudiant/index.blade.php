@@ -134,18 +134,19 @@
                     <div class="col-lg-12">
                         <div class="form-panel">
                             <h4><i class="fa fa-angle-right"></i> Enregistré un étudiant</h4>
-                            <form role="form" class="form-horizontal style-form">
+                            <form role="form" action="{{route('etudiant.store')}}" method="POST" class="form-horizontal style-form">
+                                @csrf
                                 <div class="form-group"></div>
                                 <div class="form-group">
                                     <div class="col-md-1"></div>
                                     <div class="col-md-3">
-                                        <input type="text" placeholder="Nom" id="name" class="form-control">
+                                        <input type="text" placeholder="Nom" name="name" class="form-control" style="text-transform: uppercase;" >
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" placeholder="Prénom" id="surname" class="form-control">
+                                        <input type="text" placeholder="Prénom" name="surname" class="form-control" style="text-transform: uppercase;">
                                     </div>
                                     <div class="col-md-3">
-                                        <select class="form-control">
+                                        <select name="classe" class="form-control">
                                             <option selected>Niveau</option>
                                             <option>Licence 1</option>
                                             <option>Licence 2</option>
@@ -156,13 +157,13 @@
                                 <div class="form-group">
                                     <div class="col-md-1"></div>
                                     <div class="col-md-3">
-                                        <input type="text" placeholder="Matricule" id="matricule" class="form-control">
+                                        <input type="text" placeholder="Matricule" name="matricule" class="form-control">
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" placeholder="Email" id="email" class="form-control">
+                                        <input type="text" placeholder="Email" name="email" class="form-control">
                                     </div>
                                     <div class="col-md-3">
-                                        <input type="text" placeholder="Mobile" id="mobile" class="form-control">
+                                        <input type="text" placeholder="Mobile" name="mobile" class="form-control">
                                     </div>
                                 </div>
 

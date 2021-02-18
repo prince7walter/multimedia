@@ -23,7 +23,7 @@ class MailController extends Controller
      */
     public function create()
     {
-        //
+        return view('page.email.create');
     }
 
     /**

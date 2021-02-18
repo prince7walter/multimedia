@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\etudiants;
+use App\Models\User;
 
 class EtudiantController extends Controller
 {
@@ -34,7 +37,29 @@ class EtudiantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request);
+        //creer l'etudiant comme un user
+        $usr = new User;
+        $usr->login= 'miage'.$request->input('matricule');
+        $usr->password= 'miage'.$request->input('mobile');
+        $usr->type_users= 2;
+        $usr->created_at=time();
+        $usr->save();
+        $usr_id= DB::table("users")->latest()->first();
+
+        //creer un nouvel etudiant
+        $etd = new etudiants;
+        $etd->nom = $request->input('name');
+        $etd->prenom = $request->input('surname');
+        $etd->matricule = $request->input('matricule');
+        $etd->id_classe = $request->input('classe');
+        $etd->email = $request->input('email');
+        $etd->contact = $request->input('mobile');
+        $etd->id_user = $usr_id->id;
+        $etd->save();
+
+        //retour sur la page pre
+        return back();
     }
 
     /**
