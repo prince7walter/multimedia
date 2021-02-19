@@ -16,7 +16,9 @@ class EtudiantController extends Controller
      */
     public function index()
     {
-        return view('page.etudiant.index');
+        $etud = DB::table('etudiants')->get();
+        //dd($etud);
+        return view('page.etudiant.index',compact('etud'));
     }
 
     /**
@@ -70,7 +72,11 @@ class EtudiantController extends Controller
      */
     public function show($id)
     {
-        //
+        //on fait un select avec sur id
+        $etud = DB::table('etudiants')->where('id_pers','=',$id)->first();
+
+        //pour afficher la page
+        return view('page.etudiant.edit',compact('etud'));
     }
 
     /**
@@ -81,7 +87,8 @@ class EtudiantController extends Controller
      */
     public function edit($id)
     {
-        //
+        //pour afficher la page
+        return view('page.SMS.index');
     }
 
     /**
@@ -91,9 +98,21 @@ class EtudiantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_pers)
     {
-        //
+        //update la BD
+        $etd = etudiants::find($id_pers);
+        $etd->nom = $request->input('name');
+        $etd->prenom = $request->input('surname');
+        $etd->matricule = $request->input('matricule');
+        $etd->id_classe = $request->input('classe');
+        $etd->email = $request->input('email');
+        $etd->contact = $request->input('mobile');
+        $etd->save();
+
+        //retour sur la page de gestions des etudiant
+        $etud = DB::table('etudiants')->get();
+        return view('page.etudiant.index',compact('etud'));
     }
 
     /**
@@ -104,6 +123,7 @@ class EtudiantController extends Controller
      */
     public function destroy($id)
     {
-        //
+        etudiants::destroy($id);
+        return back();
     }
 }

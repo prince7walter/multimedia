@@ -197,20 +197,22 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>CI0120132466</td>
-                                        <td>KESSIE</td>
-                                        <td>MAURICE DAVID </td>
-                                        <td> Master 2</td>
-                                        <td>
-                                            <div class="col-md-1"></div>
-                                            <button class="btn btn-success btn-xs"><i class="fa fa-send"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                                        </td>
-                                    </tr>
+                                    @foreach($etud as $etuds)
+                                        <tr>
+                                            <td>{{$etuds->matricule}}</td>
+                                            <td>{{$etuds->nom}}</td>
+                                            <td>{{$etuds->prenom}} </td>
+                                            <td>{{$etuds->id_classe}}</td>
+                                            <td>
+                                                <div class="col-md-1"></div>
+                                                <a class="btn btn-success btn-xs" href="{{ route('etudiant.edit', $etuds->id_pers) }}"><i class="fa fa-send"></i></a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-primary btn-xs" href="{{ route('etudiant.show', $etuds->id_pers) }}"><i class="fa fa-pencil"></i></a>
+                                                <a class="btn btn-danger btn-xs" href="{{ route('etudiant.destroy', $etuds->id_pers) }}"><i class="fa fa-trash-o "></i></a>
+                                            </td>
+                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

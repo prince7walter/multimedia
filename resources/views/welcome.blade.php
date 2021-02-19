@@ -8,29 +8,12 @@
                     <div class="border-head">
                         <h3> BIENVENUE </h3>
                     </div>
-
-
                 </div>
                 <!-- /col-lg-9 END SECTION MIDDLE -->
                 <!-- **********************************************************************************************************************************************************
                     RIGHT SIDEBAR CONTENT
                     *********************************************************************************************************************************************************** -->
                 <div class="col-lg-3 ds">
-                    <!--COMPLETED ACTIONS DONUTS CHART-->
-
-                    <!--NEW EARNING STATS -->
-                    <!--new earning end-->
-                    <!-- RECENT ACTIVITIES SECTION -->
-
-                    <!-- First Activity -->
-
-                    <!-- Second Activity -->
-
-                    <!-- Third Activity -->
-
-                    <!-- Fourth Activity -->
-
-                    <!-- USERS ONLINE SECTION -->
                     <h4 class="centered mt">TEAM SP UNIVERSITÉ DE COCODY</h4>
                     <!-- First Member -->
                     <div class="desc">

@@ -2,6 +2,7 @@
 
 @section('content')
     <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> Gestionnaire des emails</h3>
         <!-- page start-->
         <div class="row mt">
             <div class="col-sm-3">
