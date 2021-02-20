@@ -8,7 +8,7 @@
             <div class="col-lg-12">
                 <div class="form-panel">
                     <h4><i class="fa fa-angle-right"></i> Modifié des informations de l'étudiant</h4>
-                    <form role="form" action="{{route('etudiant.update','$etud->id_pers')}}" method="POST" class="form-horizontal style-form">
+                    <form role="form" action="{{route('etudiant.update',$etud->id_pers)}}" method="POST" class="form-horizontal style-form">
                         @csrf
                         @method('PUT')
                         <div class="form-group"></div>
@@ -35,10 +35,10 @@
                                 <input type="text" value="{{$etud->matricule}}" placeholder="Matricule" name="matricule" class="form-control">
                             </div>
                             <div class="col-md-4">
-                                <input type="text" value="{{$etud->email}}" placeholder="Email" name="email" class="form-control">
+                                <input type="email" value="{{$etud->email}}" placeholder="Email" name="email" class="form-control">
                             </div>
                             <div class="col-md-3">
-                                <input type="text" value="{{$etud->contact}}" placeholder="Mobile" name="mobile" class="form-control">
+                                <input type="numero" value="{{$etud->contact}}" placeholder="Mobile" name="mobile" class="form-control">
                             </div>
                         </div>
 

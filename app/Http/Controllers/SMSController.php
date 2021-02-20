@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\messages;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SMSController extends Controller
 {
@@ -13,6 +15,9 @@ class SMSController extends Controller
      */
     public function index()
     {
+        //requete pour obtenier les mails deja envoyes
+        $mesg= DB::table('messages')->where('type_mesg','=',2)->get();
+        //dd($mesg);
         return view('page.SMS.index');
     }
 
@@ -34,7 +39,17 @@ class SMSController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        //enregristrement en bd
+        $msg= new messages;
+        $msg->destinataire=$request->input('destinataire');
+        $msg->object=$request->input('object');
+        $msg->corps=$request->input('corps');
+        $msg->type_mesg=2;
+        $msg->save();
+
+        $etud = DB::table('etudiants')->get();
+        return view('page.etudiant.index',compact('etud'));
     }
 
     /**
@@ -56,7 +71,8 @@ class SMSController extends Controller
      */
     public function edit($id)
     {
-        //
+        //pour afficher la page
+        return view('page.SMS.index');
     }
 
     /**

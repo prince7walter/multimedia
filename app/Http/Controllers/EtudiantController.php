@@ -87,8 +87,7 @@ class EtudiantController extends Controller
      */
     public function edit($id)
     {
-        //pour afficher la page
-        return view('page.SMS.index');
+
     }
 
     /**
@@ -98,10 +97,12 @@ class EtudiantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_pers)
+    public function update(Request $request, $id)
     {
-        //update la BD
-        $etd = etudiants::find($id_pers);
+        //dd($request);
+        $etd = etudiants::find($id);
+        //var_dump($etd);
+
         $etd->nom = $request->input('name');
         $etd->prenom = $request->input('surname');
         $etd->matricule = $request->input('matricule');
@@ -123,7 +124,8 @@ class EtudiantController extends Controller
      */
     public function destroy($id)
     {
-        etudiants::destroy($id);
+        $del= etudiants::find($id);
+        $del->delete();
         return back();
     }
 }

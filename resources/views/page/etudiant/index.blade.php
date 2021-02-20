@@ -160,10 +160,10 @@
                                         <input type="text" placeholder="Matricule" name="matricule" class="form-control">
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" placeholder="Email" name="email" class="form-control">
+                                        <input type="email" placeholder="Email" name="email" class="form-control">
                                     </div>
                                     <div class="col-md-3">
-                                        <input type="text" placeholder="Mobile" name="mobile" class="form-control">
+                                        <input type="numero" placeholder="Mobile" name="mobile" class="form-control">
                                     </div>
                                 </div>
 
@@ -192,12 +192,14 @@
                                         <th> Nom</th>
                                         <th > Prénoms</th>
                                         <th> Niveau</th>
-                                        <th> Envoyé message</th>
-                                        <th> Action</th>
+                                        <th> Envoyer message</th>
+                                        <th> Modifier</th>
+                                        <th> Supprimer</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($etud as $etuds)
+
                                         <tr>
                                             <td>{{$etuds->matricule}}</td>
                                             <td>{{$etuds->nom}}</td>
@@ -205,14 +207,20 @@
                                             <td>{{$etuds->id_classe}}</td>
                                             <td>
                                                 <div class="col-md-1"></div>
-                                                <a class="btn btn-success btn-xs" href="{{ route('etudiant.edit', $etuds->id_pers) }}"><i class="fa fa-send"></i></a>
+                                                <a class="btn btn-success btn-xs" href="{{ route('sms.edit', $etuds->id_pers) }}"><i class="fa fa-send"></i></a>
                                             </td>
                                             <td>
                                                 <a class="btn btn-primary btn-xs" href="{{ route('etudiant.show', $etuds->id_pers) }}"><i class="fa fa-pencil"></i></a>
-                                                <a class="btn btn-danger btn-xs" href="{{ route('etudiant.destroy', $etuds->id_pers) }}"><i class="fa fa-trash-o "></i></a>
+                                            </td>
+                                            <td>
+                                                <form action="{{route('etudiant.destroy', $etuds->id_pers)}}" method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                                </form>
                                             </td>
                                         </tr>
-                                        @endforeach
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

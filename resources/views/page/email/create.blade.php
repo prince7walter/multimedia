@@ -26,21 +26,21 @@
                     </header>
                     <div class="panel-body">
                         <div class="compose-mail">
-                            <form role="form-horizontal" method="post">
+                            <form role="form-horizontal" action="{{route('mail.store')}}" method="POST">
+                                @csrf
                                 <div class="form-group">
                                     <label for="to" class="">À:</label>
-                                    <input type="text" tabindex="1" id="to" class="form-control">
+                                    <input type="text" name="destinataire" tabindex="1" id="to" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="subject" class="">Object:</label>
-                                    <input type="text" tabindex="1" id="subject" class="form-control">
+                                    <input type="text" name="object" tabindex="1" id="subject" class="form-control">
                                 </div>
                                 <div class="compose-editor">
-                                    <textarea class="wysihtml5 form-control" rows="9"></textarea>
-                                    <input type="file" class="default">
+                                    <textarea class="wysihtml5 form-control" name="corps" rows="9"></textarea>
                                 </div>
                                 <div class="compose-btn">
-                                    <button class="btn btn-theme btn-sm"><i class="fa fa-check"></i> Envoyer</button>
+                                    <button class="btn btn-theme btn-sm" type="submit"><i class="fa fa-check"></i> Envoyer</button>
                                 </div>
                             </form>
                         </div>

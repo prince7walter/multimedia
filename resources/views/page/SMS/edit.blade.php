@@ -10,11 +10,7 @@
                 <div id="message"></div>
                 <form class="contact-form php-mail-form" role="form" action="{{route('sms.store')}}" method="POST">
                     @csrf
-                    <input type="hidden" name="type" value="1" class="form-control">
-                    <div class="form-group">
-                        <input type="numero" name="destinataire" class="form-control" id="contact-numero" placeholder="+225XX XXXX XXXX" data-rule="required" data-msg="Veuillez entrer un numero  valide ">
-                        <div class="validate"></div>
-                    </div>
+                    <input type="hidden" name="type" value="2" class="form-control">
                     <div class="form-group">
                         <input type="text" name="object" class="form-control" id="contact-objet" placeholder="Objet" data-rule="minlen:4" data-msg="Veuillez saisir au moins  caractères du sujet">
                         <div class="validate"></div>

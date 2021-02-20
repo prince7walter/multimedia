@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\oMail;
+use App\Exceptions\Handler;
+use App\Models\etudiants;
+use App\Models\messages;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MailController extends Controller
 {
@@ -13,7 +18,10 @@ class MailController extends Controller
      */
     public function index()
     {
-        return view('page.email.index');
+        //requete pour obtenier les mails deja envoyes
+        $mesg= DB::table('messages')->where('type_mesg','=',1)->get();
+        //dd($mesg);
+        return view('page.email.index',compact('mesg'));
     }
 
     /**
@@ -34,7 +42,25 @@ class MailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $d=$request->input('destinataire');
+        $o=$request->input('object');
+        $c=$request->input('corps');
+
+        //enregristrement en bd
+        $msg= new messages;
+        $msg->destinataire=$d;
+        $msg->object=$o;
+        $msg->corps=$c;
+        $msg->type_mesg=1;
+        $msg->save();
+
+        //envoie du mail
+        oMail\sendMail::oneMail($d,$o,$c);
+        //sendMail::oneMail();
+
+        //retour vers les messages
+        $mesg=DB::table('messages')->where('type_mesg','=',1)->get();
+        return view('page.email.index',compact('mesg'));
     }
 
     /**
@@ -79,6 +105,8 @@ class MailController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $del= messages::find($id);
+        $del->delete();
+        return back();
     }
 }
