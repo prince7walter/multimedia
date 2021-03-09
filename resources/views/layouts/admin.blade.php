@@ -71,7 +71,7 @@
         </div>
         <div class="top-menu">
             <ul class="nav pull-right top-menu">
-                <li><a class="logout" href="login.html">Se déconnecter</a></li>
+                <li><a class="logout" href="{{route('login')}}">Se déconnecter</a></li>
             </ul>
         </div>
     </header>

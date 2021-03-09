@@ -16,7 +16,7 @@ class EtudiantController extends Controller
      */
     public function index()
     {
-        $etud = DB::table('etudiants')->get();
+        $etud = DB::table('etudiants')->join('classes','etudiants.id_classe','=','classes.id_class')->get();
         //dd($etud);
         return view('page.etudiant.index',compact('etud'));
     }
@@ -73,7 +73,10 @@ class EtudiantController extends Controller
     public function show($id)
     {
         //on fait un select avec sur id
-        $etud = DB::table('etudiants')->where('id_pers','=',$id)->first();
+        $etud = DB::table('etudiants')->join('classes','etudiants.id_classe','=','classes.id_class')
+            ->where('id_pers','=',$id)->first();
+
+
 
         //pour afficher la page
         return view('page.etudiant.edit',compact('etud'));

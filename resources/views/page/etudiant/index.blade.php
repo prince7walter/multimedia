@@ -125,6 +125,9 @@
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
     <!--main content start-->
+        <?php
+        $classe = \Illuminate\Support\Facades\DB::table('classes')->select('*')->get();
+        ?>
     <section id="main-content">
         <section class="wrapper site-min-height">
             <section class="wrapper">
@@ -146,11 +149,11 @@
                                         <input type="text" placeholder="Prénom" name="surname" class="form-control" style="text-transform: uppercase;">
                                     </div>
                                     <div class="col-md-3">
+
                                         <select name="classe" class="form-control">
-                                            <option selected>Niveau</option>
-                                            <option>Licence 1</option>
-                                            <option>Licence 2</option>
-                                            <option>Licence 3</option>
+                                            @foreach($classe as $test)
+                                                <option value="{{$test->id_class}}">{{$test->libelle}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -202,9 +205,9 @@
 
                                         <tr>
                                             <td>{{$etuds->matricule}}</td>
-                                            <td>{{$etuds->nom}}</td>
-                                            <td>{{$etuds->prenom}} </td>
-                                            <td>{{$etuds->id_classe}}</td>
+                                            <td class="text-uppercase">{{$etuds->nom}}</td>
+                                            <td class="text-uppercase">{{$etuds->prenom}} </td>
+                                            <td>{{$etuds->libelle}}</td>
                                             <td>
                                                 <div class="col-md-1"></div>
                                                 <a class="btn btn-success btn-xs" href="{{ route('sms.edit', $etuds->id_pers) }}"><i class="fa fa-send"></i></a>

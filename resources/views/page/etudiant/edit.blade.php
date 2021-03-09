@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
+    <?php
+    $classe = \Illuminate\Support\Facades\DB::table('classes')->select('*')->get();
+    ?>
     <section class="wrapper">
         <h3><i class="fa fa-angle-right"></i> Mise à jour</h3>
 
@@ -21,11 +24,15 @@
                                 <input type="text" value="{{$etud->prenom}}" placeholder="Prénom" name="surname" class="form-control" style="text-transform: uppercase;">
                             </div>
                             <div class="col-md-3">
+
                                 <select name="classe" class="form-control">
-                                    <option selected>Niveau</option>
-                                    <option>Licence 1</option>
-                                    <option>Licence 2</option>
-                                    <option>Licence 3</option>
+                                    @foreach($classe as $test):
+                                    @if($test->id_class == $etud->id_classe):
+                                    <option selected value="{{$test->id_class}}">{{$test->libelle}}</option>
+                                    @else
+                                        <option value="{{$test->id_class}}">{{$test->libelle}}</option>
+                                    @endif;
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
