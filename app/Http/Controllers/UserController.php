@@ -65,7 +65,7 @@ class UserController extends Controller
             return response()->json('connect', 200);
             //return redirect()->route('dashbord.index');
         } else {
-            return response()->json('failled', 400);
+            return response()->json('failled ', 400);
         }
     }
 }
