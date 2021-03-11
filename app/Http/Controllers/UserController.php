@@ -60,11 +60,11 @@ class UserController extends Controller
         $user = DB::table('users')->where(['login' => $requests['login'], 'password' => $requests['password']])->first();
 
         //Si l'utilisateur existe et est déconnecté.
-        if($user == null) {
-            return response()->json('test2222',200);
+        if($user != null) {
+            return response()->json('connect',200);
             //return redirect()->route('dashbord.index');
         } else {
-            return response()->json('nontest',400);
+            return response()->json('failled',400);
         }
     }
 }
