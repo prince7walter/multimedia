@@ -9,9 +9,9 @@
                 <section class="panel">
                     <div class="panel-body">
                         <ul class="nav nav-pills nav-stacked mail-nav">
-                            <li class="active"><a href="{{route('mail.index')}}"> <i class="fa fa-inbox"></i>
-                                    Boite de réception </a></li>
-                            <li><a href="{{route('mail.create')}}"> <i class="fa fa-envelope-o"></i> Envoyez Mail</a></li>
+                            <li ><a href="{{route('mail.index')}}"> <i class="fa fa-inbox"></i>
+                                    Messages envoyés </a></li>
+                            <li class="active"><a href="{{route('mail.create')}}"> <i class="fa fa-envelope-o"></i> Envoyez Mail</a></li>
                         </ul>
                     </div>
                 </section>

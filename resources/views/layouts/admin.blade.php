@@ -37,38 +37,9 @@
             <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
         </div>
         <!--logo start-->
-        <a href="{{route('dashbord.index')}}" class="logo"><b>Manager'<span>s Tools</span></b></a>
+        <a href="{{route('dashbord.index')}}" class="logo"><b>Sp <span>Université</span></b></a>
         <!--logo end-->
-        <div class="nav notify-row" id="top_menu">
-            <!--  notification start -->
-            <ul class="nav top-menu">
-                <!-- settings start -->
-                <li class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-                        <i class="fa fa-tasks"></i>
-                        <span class="badge bg-theme"></span>
-                    </a>
-                </li>
-                <!-- settings end -->
-                <!-- inbox dropdown start-->
-                <li id="header_inbox_bar" class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-                        <i class="fa fa-envelope-o"></i>
-                        <span class="badge bg-theme"></span>
-                    </a>
-                </li>
-                <!-- inbox dropdown end -->
-                <!-- notification dropdown start-->
-                <li id="header_notification_bar" class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-                        <i class="fa fa-bell-o"></i>
-                        <span class="badge bg-warning"></span>
-                    </a>
-                </li>
-                <!-- notification dropdown end -->
-            </ul>
-            <!--  notification end -->
-        </div>
+
         <div class="top-menu">
             <ul class="nav pull-right top-menu">
                 <li><a class="logout" href="{{route('login')}}">Se déconnecter</a></li>
@@ -87,7 +58,7 @@
                 <p class="centered"><a href="profile.html"><img src="{{asset('img/user.png')}}" class="img-circle" width="80"></a></p>
                 <h5 class="centered">Super User</h5>
                 <li class="mt">
-                    <a class="active" href="{{route('dashbord.index')}}">
+                    <a href="{{route('dashbord.index')}}">
                         <i class="fa fa-dashboard"></i>
                         <span>Tableau de bord</span>
                     </a>
