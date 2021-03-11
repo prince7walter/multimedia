@@ -32,6 +32,7 @@ class UserController extends Controller
             ], 401);
         }
     }
+<<<<<<< HEAD
 
     /*
         public function logout(Request $res)
@@ -52,6 +53,27 @@ class UserController extends Controller
             }
         }
     */
+=======
+/*
+    public function logout(Request $res)
+    {
+        if (Auth::user()) {
+            $user = Auth::user()->token();
+            $user->revoke();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Logout successfully'
+            ]);
+        }else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unable to Logout'
+            ]);
+        }
+    }
+*/
+>>>>>>> origin/main
     public function log(Request $request)
     {
 
@@ -61,11 +83,19 @@ class UserController extends Controller
         $user = DB::table('users')->where(['login' => $requests['login'], 'password' => $requests['password']])->first();
 
         //Si l'utilisateur existe et est déconnecté.
+<<<<<<< HEAD
         if ($user != null) {
             return response()->json('connect', 200);
             //return redirect()->route('dashbord.index');
         } else {
             return response()->json('failled ', 400);
+=======
+        if($user != null) {
+            return response()->json('connect',200);
+            //return redirect()->route('dashbord.index');
+        } else {
+            return response()->json('failled',400);
+>>>>>>> origin/main
         }
     }
 }
