@@ -31,4 +31,7 @@ Route::delete('students/{id}',[\App\Http\Controllers\ApiController::class,'delet
 Route::post('sms',[\App\Http\Controllers\ApiController::class,'sendSms']);
 Route::post('email',[\App\Http\Controllers\ApiController::class,'sendEmail']);
 Route::get('sms/{id}',[\App\Http\Controllers\ApiController::class,'getSms']);
+Route::get('email/{id}',[\App\Http\Controllers\ApiController::class,'getMail']);
 Route::get('email',[\App\Http\Controllers\ApiController::class,'getAllEmail']);
+Route::get('sms',[\App\Http\Controllers\ApiController::class,'getAllSms']);
+

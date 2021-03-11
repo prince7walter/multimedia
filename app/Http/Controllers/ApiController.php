@@ -18,7 +18,7 @@ class ApiController extends Controller
 
     public function createStudent(Request $request) {
 
-        //creer l'etudiant comme un user
+        //creer l'étudiant comme un user
         $usr = new User;
         $usr->login= 'miage'.$request->matricule;
         $usr->password= 'miage'.$request->mobile;
@@ -120,8 +120,16 @@ class ApiController extends Controller
         return response()->json('message send',200);
     }
 
-    public function getSms($id) {
+    public function getMail($id) {
+        $mesg= DB::table('messages')->join('etudiants','messages.destinataire','=','etudiants.email')
+            ->where('id_pers','=',$id)->get();
+        return response()->json($mesg,200);
+    }
 
+    public function getSms($id) {
+        $mesg= DB::table('messages')->join('etudiants','messages.destinataire','=','etudiants.contact')
+            ->where('id_pers','=',$id)->get();
+        return response()->json($mesg,200);
     }
 
     public function getAllEmail (){
@@ -129,5 +137,9 @@ class ApiController extends Controller
         return response()->json($mesg,200);
     }
 
+    public function getAllSms (){
+        $mesg= DB::table('messages')->where('type_mesg','=',2)->get();
+        return response()->json($mesg,200);
+    }
 
 }
