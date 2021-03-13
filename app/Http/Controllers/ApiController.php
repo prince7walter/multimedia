@@ -12,8 +12,10 @@ use Illuminate\Support\Facades\DB;
 class ApiController extends Controller
 {
     public function getAllStudents() {
-        $etd = etudiants::get()->toJson(JSON_PRETTY_PRINT);
-        return response($etd, 200);
+        $etd = etudiants::get();
+        return response()->json([
+            "listes" => $etd
+        ], 200);
     }
 
     public function createStudent(Request $request) {
