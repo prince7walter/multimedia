@@ -36,7 +36,7 @@
                                                 <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
                                                 </form>
                                             </td>
-                                            <td class="view-message ">{{$send->destinataire}}</a></td>
+                                            <td class="view-message ">{{$send->nom}} {{$send->prenom}}</a></td>
                                             <td class="view-message ">{{$send->object}}</a></td>
                                             <td class="view-message  inbox-small-cells"><i class="fa fa-check"></i></td>
                                             <td class="view-message  text-right">{{$send->created_at}}</td>
