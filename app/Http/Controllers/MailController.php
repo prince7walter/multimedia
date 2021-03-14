@@ -19,7 +19,8 @@ class MailController extends Controller
     public function index()
     {
         //requete pour obtenier les mails deja envoyes
-        $mesg= DB::table('messages')->where('type_mesg','=',1)->get();
+        $mesg= DB::table('messages')->join('etudiants','messages.destinataire','=','etudiants.email')
+        ->where('type_mesg','=',1)->orderByDesc('messages.created_at')->get();
         //dd($mesg);
         return view('page.email.index',compact('mesg'));
     }
@@ -42,25 +43,33 @@ class MailController extends Controller
      */
     public function store(Request $request)
     {
-        $d=$request->input('destinataire');
-        $o=$request->input('object');
-        $c=$request->input('corps');
+        //recuperer les mails
+        $mail=DB::table('etudiants')->where('id_classe','=',$request->classe)->get();
 
-        //enregristrement en bd
-        $msg= new messages;
-        $msg->destinataire=$d;
-        $msg->object=$o;
-        $msg->corps=$c;
-        $msg->type_mesg=1;
-        $msg->save();
+        //dd($mail);
+        for ($i=0; $i<count($mail);$i++)
+        {
 
-        //envoie du mail
-        oMail\sendMail::oneMail($d,$o,$c);
-        //sendMail::oneMail();
+            $d=$mail[$i]->email;
+            $o=$request->input('object');
+            $c=$request->input('corps');
 
+            //enregristrement en bd
+            $msg= new messages;
+            $msg->destinataire=$d;
+            $msg->object=$o;
+            $msg->corps=$c;
+            $msg->type_mesg=1;
+            $msg->save();
+
+            //envoie du mail
+            oMail\sendMail::oneMail($d,$o,$c);
+            //sendMail::oneMail();
+        }
         //retour vers les messages
-        $mesg=DB::table('messages')->where('type_mesg','=',1)->get();
-        return view('page.email.index',compact('mesg'));
+        $mesg= DB::table('messages')->join('etudiants','messages.destinataire','=','etudiants.email')
+            ->where('type_mesg','=',1)->get();
+        return back();
     }
 
     /**

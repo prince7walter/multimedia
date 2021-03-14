@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
+    <?php
+    $classe = \Illuminate\Support\Facades\DB::table('classes')->select('*')->get();
+    ?>
+
     <section class="wrapper">
         <h3><i class="fa fa-angle-right"></i> Gestionnaire des emails</h3>
         <!-- page start-->
@@ -30,8 +34,15 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="to" class="">À:</label>
-                                    <input type="text" name="destinataire" tabindex="1" id="to" class="form-control">
+                                    <select name="classe" class="form-control">
+                                        @foreach($classe as $test):
+                                            <option value="{{$test->id_class}}">{{$test->libelle}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
+
+
+
                                 <div class="form-group">
                                     <label for="subject" class="">Object:</label>
                                     <input type="text" name="object" tabindex="1" id="subject" class="form-control">
