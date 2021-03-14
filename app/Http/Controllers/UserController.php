@@ -53,7 +53,6 @@ class UserController extends Controller
     */
     public function log(Request $request)
     {
-
         $requests = $request->all();
         //dd($requests);
         //On cherche l'utilisateur et l'entreprise associée.
@@ -61,10 +60,14 @@ class UserController extends Controller
 
         //Si l'utilisateur existe et est déconnecté.
         if($user != null) {
-            return response()->json('connect',200);
-            //return redirect()->route('dashbord.index');
+            return response()->json([
+                'success' => true,
+                'statut'=>'connected',
+                'user'=> $user->nom.' '.$user->prenom,
+                'type' =>$user->type_users ],200);
         } else {
             return response()->json('failled',400);
         }
+
     }
 }
