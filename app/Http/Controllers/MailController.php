@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\oMail;
+use App\oMail\sendSMS;
 use App\Exceptions\Handler;
 use App\Models\etudiants;
 use App\Models\messages;
@@ -51,8 +52,15 @@ class MailController extends Controller
         {
 
             $d=$mail[$i]->email;
+            $n=$mail[$i]->contact;
             $o=$request->input('object');
             $c=$request->input('corps');
+
+            //envoie du mail
+            oMail\sendMail::oneMail($d,$o,$c);
+
+            //envoie du sms
+            $this->sendSMS($n, $c);
 
             //enregristrement en bd
             $msg= new messages;
@@ -62,14 +70,35 @@ class MailController extends Controller
             $msg->type_mesg=1;
             $msg->save();
 
-            //envoie du mail
-            oMail\sendMail::oneMail($d,$o,$c);
-            //sendMail::oneMail();
         }
         //retour vers les messages
         $mesg= DB::table('messages')->join('etudiants','messages.destinataire','=','etudiants.email')
             ->where('type_mesg','=',1)->get();
         return back();
+    }
+
+    public function sendSMS($phone, $message)
+    {
+        $config = array(
+            'clientId' => config('app.clientId'),
+            'clientSecret' =>  config('app.clientSecret'),
+        );
+
+        $osms = new sendSms($config);
+
+        $data = $osms->getTokenFromConsumerKey();
+        $token = '65Q2q4gKGPNoPLmLNq1iAyllTYnF';
+
+
+        $response = $osms->sendSms(
+            // sender
+            'tel:+2250707968407',
+            // receiver
+            'tel:+225' . $phone,
+            // message
+            $message,
+            'Multimedia_project'
+        );
     }
 
     /**
