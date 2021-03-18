@@ -76,8 +76,6 @@ class EtudiantController extends Controller
         $etud = DB::table('etudiants')->join('classes','etudiants.id_classe','=','classes.id_class')
             ->where('id_pers','=',$id)->first();
 
-
-
         //pour afficher la page
         return view('page.etudiant.edit',compact('etud'));
     }

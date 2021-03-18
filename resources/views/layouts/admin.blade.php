@@ -72,13 +72,7 @@
                 <li class="sub-menu">
                     <a href="{{route('mail.index')}}">
                         <i class="fa fa-book"></i>
-                        <span>Envoyer un mail</span>
-                    </a>
-                </li>
-                <li class="sub-menu">
-                    <a href="{{route('sms.index')}}">
-                        <i class="fa fa-tasks"></i>
-                        <span>Envoyer un SMS</span>
+                        <span>Envoyer un message</span>
                     </a>
                 </li>
             </ul>

@@ -6,6 +6,7 @@ use App\oMail;
 use App\Models\etudiants;
 use App\Models\messages;
 use App\Models\User;
+use App\oMail\sendSMS;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -44,11 +45,13 @@ class ApiController extends Controller
     }
 
     public function getStudents($id) {
-        if (etudiants::where('matricule','=', $id)->exists()) {
-            $etd = etudiants::where ('matricule','=', $id)->get()->toJson(JSON_PRETTY_PRINT);
-        return response($etd, 200);
+        if (etudiants::where('id_classe','=', $id)->exists()) {
+            $etd = etudiants::where ('id_classe','=', $id)->get();
+        return response()->json([
+            "listes" => $etd
+        ], 200);
       } else {
-            return response()->json('introuvable', 404);
+            return response()->json(['introuvable'], 405);
       }
     }
 
@@ -104,22 +107,59 @@ class ApiController extends Controller
     }
 
     public function sendEmail (Request $request){
-        $d=$request->destinataire;
-        $o=$request->object;
-        $c=$request->corps;
 
-        //enregristrement en bd
-        $msg= new messages;
-        $msg->destinataire=$d;
-        $msg->object=$o;
-        $msg->corps=$c;
-        $msg->type_mesg=1;
-        $msg->save();
+        //recuperer les mails
+        $mail=DB::table('etudiants')->where('id_classe','=',$request->classe)->get();
 
-        //envoie du mail
-        oMail\sendMail::oneMail($d,$o,$c);
+        //dd($mail);
+        for ($i=0; $i<count($mail);$i++)
+        {
+
+            $d=$mail[$i]->email;
+            $n=$mail[$i]->contact;
+            $o=$request->object;
+            $c=$request->corps;
+
+            //envoie du mail
+            oMail\sendMail::oneMail($d,$o,$c);
+
+            //envoie du sms
+            $this->sendoSMS($n, $c);
+
+            //enregristrement en bd
+            $msg= new messages;
+            $msg->destinataire=$d;
+            $msg->object=$o;
+            $msg->corps=$c;
+            $msg->type_mesg=1;
+            $msg->save();
+
+        }
 
         return response()->json('message send',200);
+    }
+    public function sendoSMS($phone, $message)
+    {
+        $config = array(
+            'clientId' => config('app.clientId'),
+            'clientSecret' =>  config('app.clientSecret'),
+        );
+
+        $osms = new sendSms($config);
+
+        $data = $osms->getTokenFromConsumerKey();
+        $token = '65Q2q4gKGPNoPLmLNq1iAyllTYnF';
+
+
+        $response = $osms->sendSms(
+        // sender
+            'tel:+2250707968407',
+            // receiver
+            'tel:+225' . $phone,
+            // message
+            $message,
+            'Multimedia_project'
+        );
     }
 
     public function getMail($id) {

@@ -40,9 +40,6 @@
                                         @endforeach
                                     </select>
                                 </div>
-
-
-
                                 <div class="form-group">
                                     <label for="subject" class="">Object:</label>
                                     <input type="text" name="object" tabindex="1" id="subject" class="form-control">

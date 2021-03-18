@@ -6,34 +6,29 @@
         <div class="row mt">
             <div class="col-md-3"></div>
             <div class="col-lg-6 col-md-6 col-sm-6">
-                <h4 class="title">SMS</h4>
-                <div id="message"></div>
-                <form class="contact-form php-mail-form" role="form" action="{{route('sms.store')}}" method="POST">
-                    @csrf
-                    <input type="hidden" name="type" value="1" class="form-control">
-                    <div class="form-group">
-                        <input type="numero" name="destinataire" class="form-control" id="contact-numero" placeholder="+225XX XXXX XXXX" data-rule="required" data-msg="Veuillez entrer un numero  valide ">
-                        <div class="validate"></div>
+                <section class="panel">
+                    <header class="panel-heading wht-bg">
+                        <h4 class="gen-case">
+                            Nouveau message
+                        </h4>
+                    </header>
+                    <div class="panel-body">
+                        <div class="compose-mail"></div>
+                        <form role="form-horizontal" action="{{route('message',$etud->id_pers)}}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label for="subject" class="">Object:</label>
+                                <input type="text" name="object" tabindex="1" id="subject" class="form-control">
+                            </div>
+                            <div class="compose-editor">
+                                <textarea class="wysihtml5 form-control" name="corps" rows="9"></textarea>
+                            </div>
+                            <div class="compose-btn" style="align: center;">
+                                <button class="btn btn-theme btn-sm" type="submit"><i class="fa fa-check"></i> Envoyer</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <input type="text" name="object" class="form-control" id="contact-objet" placeholder="Objet" data-rule="minlen:4" data-msg="Veuillez saisir au moins  caractères du sujet">
-                        <div class="validate"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <textarea class="form-control" name="corps" id="contact-message" placeholder="Votre Message" rows="5" data-rule="required" data-msg="SVP écrivez quelque chose " ></textarea>
-                        <div class="validate"></div>
-                    </div>
-
-                    <div class="loading"></div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Votre message a été envoyé. Merci !</div>
-
-                    <div class="form-send">
-                        <button type="submit" class="btn btn-large btn-primary">Envoyer Message</button>
-                    </div>
-
-                </form>
+                </section>
             </div>
 
 

@@ -81,12 +81,6 @@
                         <span>Envoyer un mail</span>
                     </a>
                 </li>
-                <li class="sub-menu">
-                    <a href="{{route('sms.index')}}">
-                        <i class="fa fa-tasks"></i>
-                        <span>Envoyer un SMS</span>
-                    </a>
-                </li>
             </ul>
             <!-- sidebar menu end-->
         </div>
@@ -181,7 +175,7 @@
                                             <td>{{$etuds->libelle}}</td>
                                             <td>
                                                 <div class="col-md-1"></div>
-                                                <a class="btn btn-success btn-xs" href="{{ route('sms.edit', $etuds->id_pers) }}"><i class="fa fa-send"></i></a>
+                                                <a class="btn btn-success btn-xs" href="{{ route('sms.show', $etuds->id_pers) }}"><i class="fa fa-send"></i></a>
                                             </td>
                                             <td>
                                                 <a class="btn btn-primary btn-xs" href="{{ route('etudiant.show', $etuds->id_pers) }}"><i class="fa fa-pencil"></i></a>

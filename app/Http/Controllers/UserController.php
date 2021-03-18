@@ -13,23 +13,18 @@ class UserController extends Controller
         return view('page/login');
     }
 
-    public function login()
+    public function login(Request $request)
     {
-        if (Auth::attempt(['login' => request('login'), 'password' => request('password')])) {
-            $user = Auth::user();
-            $success['token'] = $user->createToken('appToken')->accessToken;
-            //After successfull authentication, notice how I return json parameters
-            return response()->json([
-                'success' => true,
-                'token' => $success,
-                'user' => $user
-            ]);
+        $requests = $request->all();
+        //dd($requests);
+        //On cherche l'utilisateur et l'entreprise associée.
+        $user = DB::table('users')->where(['login' => $requests['login'], 'password' => $requests['password']])->first();
+
+        //Si l'utilisateur existe et est déconnecté.
+        if($user != null) {
+            return redirect()->route('dashbord.index');
         } else {
-            //if authentication is unsuccessfull, notice how I return json parameters
-            return response()->json([
-                'success' => false,
-                'message' => 'Invalid Email or Password',
-            ], 401);
+            return back()->with('message','=','login ou mot de passe incorrect');
         }
     }
     /*
@@ -57,13 +52,16 @@ class UserController extends Controller
         //dd($requests);
         //On cherche l'utilisateur et l'entreprise associée.
         $user = DB::table('users')->where(['login' => $requests['login'], 'password' => $requests['password']])->first();
+        $using = DB::table('etudiants')->join('users','etudiants.id_user','=','users.id')
+            ->where('users.id','=', $user->id)->first();
+        $name = $using->nom.' '.$using->prenom;
 
         //Si l'utilisateur existe et est déconnecté.
         if($user != null) {
             return response()->json([
                 'success' => true,
                 'statut'=>'connected',
-                'user'=> $user->nom.' '.$user->prenom,
+                'user'=> $name,
                 'type' =>$user->type_users ],200);
         } else {
             return response()->json('failled',400);

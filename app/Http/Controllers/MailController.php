@@ -130,9 +130,33 @@ class MailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function _store(Request $request, $id)
     {
-        //
+        //recuperer les mails
+        $mail=DB::table('etudiants')->where('id_pers','=',$id)->get();
+        //dd($mail);
+            /*$d=$mail->email;
+            $n=$mail->contact;
+            $o=$request->input('object');
+            $c=$request->input('corps');
+
+            //envoie du mail
+            oMail\sendMail::oneMail($d,$o,$c);
+
+            //envoie du sms
+            $this->sendSMS($n, $c);
+
+            //enregristrement en bd
+            $msg= new messages;
+            $msg->destinataire=$d;
+            $msg->object=$o;
+            $msg->corps=$c;
+            $msg->type_mesg=1;
+            $msg->save();*/
+
+        $etud = DB::table('etudiants')->join('classes','etudiants.id_classe','=','classes.id_class')->get();
+        //dd($etud);
+        return view('page.etudiant.index',compact('etud'));
     }
 
     /**

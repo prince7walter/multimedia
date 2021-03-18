@@ -60,7 +60,11 @@ class SMSController extends Controller
      */
     public function show($id)
     {
-        //
+        //trouver l'etudiant concerne'
+        $etud = DB::table('etudiants')->join('classes','etudiants.id_classe','=','classes.id_class')
+            ->where('id_pers','=',$id)->first();
+        //pour afficher la page
+        return view('page.SMS.index',compact('etud'));
     }
 
     /**
@@ -71,8 +75,7 @@ class SMSController extends Controller
      */
     public function edit($id)
     {
-        //pour afficher la page
-        return view('page.SMS.index');
+        //
     }
 
     /**
@@ -84,7 +87,7 @@ class SMSController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
